@@ -12,6 +12,11 @@
   --stroke: rgba(255,255,255,.55);
   --shadow: 0 18px 55px rgba(0,0,0,.10);
   --radius: 26px;
+  --gold-light: #fff6d5;
+  --gold-medium: #e6c76a;
+  --gold-dark: #c9a13f;
+  --gold-deep: #a87e2c;
+  --terracota: #dc876e;
 }
 
 *{ box-sizing: border-box; }
@@ -157,10 +162,59 @@ body{
   filter: drop-shadow(0 18px 35px rgba(0,0,0,.08));
 }
 
+/* ===========================================
+   ESTILO MEJORADO PARA EL ENCABEZADO
+   =========================================== */
 .hero-sub{
-  margin: 0 0 6px;
-  font-size: .98rem;
-  opacity: .78;
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  opacity: 1;
+  color: #5d4a2e;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #7f4f24 0%, #a87e2c 50%, #7f4f24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  padding: 0 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.hero-sub::before,
+.hero-sub::after {
+  content: "✨";
+  font-size: 1.2rem;
+  margin: 0 10px;
+  opacity: 0.7;
+  background: linear-gradient(135deg, var(--gold-medium), var(--gold-deep));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-sub::before {
+  content: "✦";
+  margin-right: 10px;
+}
+
+.hero-sub::after {
+  content: "✦";
+  margin-left: 10px;
+}
+
+/* Estilo especial para los nombres MARIUXI Y RAUL */
+.hero-sub strong,
+.hero-sub .highlight {
+  font-weight: 900;
+  font-size: 1.4rem;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold-medium) 30%, var(--gold-dark) 70%, var(--gold-deep));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 8px rgba(168,126,44,0.3);
+  letter-spacing: 2px;
+  margin: 0 5px;
 }
 
 .baby-name{
@@ -174,8 +228,37 @@ body{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 2px 6px rgba(255,240,200,.6), 0 8px 24px rgba(168,126,44,.25);
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 28px;
+  position: relative;
+  display: inline-block;
+}
+
+.baby-name::before,
+.baby-name::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-medium), transparent);
+}
+
+.baby-name::before {
+  left: -70px;
+}
+
+.baby-name::after {
+  right: -70px;
+}
+
+@media (max-width: 768px) {
+  .baby-name::before,
+  .baby-name::after {
+    width: 30px;
+  }
+  .baby-name::before { left: -40px; }
+  .baby-name::after { right: -40px; }
 }
 
 .badge-pill{
@@ -594,6 +677,8 @@ body{
   .balloon-img{ width:110px; right:10px; top:160px; opacity:.75; }
   .bear-img{ width:110px; left:10px; top:140px; opacity:.82; }
   .cloud-1{ width: 360px; top: 30px; }
+  .hero-sub { font-size: 1rem; }
+  .hero-sub::before, .hero-sub::after { font-size: 1rem; }
 }
 
 @media (max-width: 600px){

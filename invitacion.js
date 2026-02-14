@@ -4,7 +4,7 @@
 
   // ===== HEADER =====
   document.getElementById("qtyBadgeTop").textContent = `Reservado para ${qty} persona${qty > 1 ? "s" : ""}`;
-  document.getElementById("welcomeLine").textContent = CONFIG.WELCOME_LINE;
+  document.getElementById("welcomeLine").innerHTML = `<span class="highlight">MARIUXI Y RAUL</span> tienen el honor de invitarte al Baby Shower de`;
   document.getElementById("babyName").textContent = CONFIG.BABY_NAME;
   document.getElementById("eventTitle").textContent = `${CONFIG.EVENT_TITLE} - ${CONFIG.BABY_NAME}`;
 
@@ -48,7 +48,7 @@
 
   document.getElementById("eventTimeText").textContent = `${fmt2(eventDate.getHours())}:${fmt2(eventDate.getMinutes())}`;
 
-  // ===== COUNTDOWN =====
+  // ===== COUNTDOWN CORREGIDO =====
   const cdDays = document.getElementById("cdDays");
   const cdHours = document.getElementById("cdHours");
   const cdMinutes = document.getElementById("cdMinutes");
@@ -66,8 +66,15 @@
     cdDays.textContent = fmt2(days);
     cdHours.textContent = fmt2(hours);
     cdMinutes.textContent = fmt2(mins);
+    
+    // Forzar actualización visual
+    console.log("Countdown actualizado:", days, hours, mins);
   }
+  
+  // Ejecutar inmediatamente
   tickCountdown();
+  
+  // Actualizar cada segundo
   setInterval(tickCountdown, 1000);
 
   // ===== PROGRESS BAR =====
@@ -83,7 +90,7 @@
   updateProgress();
   setInterval(updateProgress, 60000);
 
-  // ===== MODAL RELOJ =====
+  // ===== MODAL RELOJ CORREGIDO =====
   const timeBtn = document.getElementById("timeBtn");
   const modal = document.getElementById("clockModal");
   const digital = document.getElementById("digitalClock");
@@ -127,6 +134,7 @@
   }
 
   timeBtn.addEventListener("click", openModal);
+  
   modal.addEventListener("click", (e) => {
     if (e.target?.dataset?.close) closeModal();
   });

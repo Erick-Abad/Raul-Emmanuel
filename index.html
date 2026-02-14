@@ -13,26 +13,12 @@
     :root{
       --cream: #fbf6ee;
       --bone:  #fffdf8;
-      --ink: rgba(45,62,80,.92);
-      --sand: #d7c2a0;
-      --sky: #7fbfe8;
+      --glass: rgba(255,255,255,.78);
     }
     body{
       background: linear-gradient(180deg, var(--cream), var(--bone));
       font-family: 'Montserrat', sans-serif;
       min-height: 100vh;
-      position: relative;
-    }
-    body::before{
-      content:"";
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events:none;
-      background:
-        radial-gradient(900px circle at 15% 12%, rgba(127,191,232,.22), transparent 55%),
-        radial-gradient(900px circle at 85% 18%, rgba(212,175,55,.10), transparent 55%),
-        radial-gradient(900px circle at 50% 100%, rgba(231,220,203,.28), transparent 55%);
     }
     .card-generator{
       background: rgba(255,255,255,.78);
@@ -40,8 +26,6 @@
       border: 1px solid rgba(255,255,255,.65);
       border-radius: 32px;
       box-shadow: 0 18px 55px rgba(0,0,0,.08);
-      position: relative;
-      z-index: 1;
     }
     .preview-iframe{
       width:100%;
@@ -63,7 +47,7 @@
   </style>
 </head>
 <body class="p-3">
-  <div class="container py-4" style="position: relative; z-index: 1;">
+  <div class="container py-4">
     <div class="row g-4">
       <!-- Panel de control -->
       <div class="col-lg-5">
@@ -113,7 +97,7 @@
       <div class="col-lg-7">
         <div class="card-generator p-3">
           <div class="d-flex align-items-center gap-2 mb-3">
-            <span class="badge rounded-pill" style="background: rgba(127,191,232,.2); color:#2b4f6e; padding:8px 16px;" id="previewBadge">1 persona</span>
+            <span class="badge rounded-pill" style="background: rgba(127,191,232,.2); color:#2b4f6e; padding:8px 16px;" id="previewBadge">Reservado para 1 persona</span>
             <span class="fw-light"><i class="bi bi-eye me-1"></i>Vista previa</span>
           </div>
           <iframe class="preview-iframe" id="previewFrame" title="Vista previa"></iframe>
@@ -133,129 +117,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // CONFIGURACIÓN
-    const CONFIG = {
-      WA_MESSAGE_PREFIX:  "Hola 😊\n\nCon muchísima alegría queremos compartir contigo la invitación al Baby Shower de nuestro querido Raúl Emmanuel 🤍\n\nEstamos preparando un día muy especial para celebrar la dulce espera y nos encantaría que formes parte de este momento tan importante para nosotros. Tu presencia hará que esta celebración sea aún más significativa y llena de amor.\n\nEn la invitación encontrarás todos los detalles del evento. ¡Esperamos contar contigo para compartir juntos esta hermosa bendición!\n\n",
-      ORGANIZER_PHONE: "593999999999" // Cambia por tu número
-    };
-
-    // GENERATOR JS
-    (function () {
-      const form = document.getElementById("genForm");
-      const qtySelect = document.getElementById("qtySelect");
-      const phoneInput = document.getElementById("phoneInput");
-      const errBox = document.getElementById("errBox");
-
-      const previewFrame = document.getElementById("previewFrame");
-      const previewBadge = document.getElementById("previewBadge");
-
-      const copyBtn = document.getElementById("copyBtn");
-      const openBtn = document.getElementById("openBtn");
-
-      const toastEl = document.getElementById("copyToast");
-      const toastText = document.getElementById("copyToastText");
-      const toast = new bootstrap.Toast(toastEl, { delay: 1600 });
-
-      function showErr(msg) {
-        errBox.textContent = msg;
-        errBox.classList.remove("d-none");
-      }
-      function clearErr() {
-        errBox.textContent = "";
-        errBox.classList.add("d-none");
-      }
-      function showToast(msg) {
-        toastText.textContent = msg;
-        toast.show();
-      }
-
-      function normalizeEcuadorPhone(input) {
-        if (!input) return null;
-        let s = String(input).trim();
-        s = s.replaceAll(" ", "").replaceAll("-", "").replaceAll("(", "").replaceAll(")", "");
-
-        if (s.startsWith("+")) s = s.slice(1);
-
-        if (/^09\d{8}$/.test(s)) return "593" + s.slice(1);
-        if (/^5939\d{8}$/.test(s)) return s;
-
-        return null;
-      }
-
-      function inviteLink(qty) {
-        const q = Math.min(3, Math.max(1, parseInt(qty, 10) || 1));
-        return `invitacion.html?qty=${q}`;
-      }
-
-      function absoluteInviteLink(qty) {
-        const rel = inviteLink(qty);
-        try {
-          return new URL(rel, window.location.href).toString();
-        } catch {
-          return rel;
-        }
-      }
-
-      function updatePreview() {
-        const qty = parseInt(qtySelect.value, 10) || 1;
-        previewBadge.textContent = `${qty} persona${qty > 1 ? "s" : ""}`;
-        previewFrame.src = inviteLink(qty);
-      }
-
-      async function copyText(text) {
-        try {
-          await navigator.clipboard.writeText(text);
-          showToast("Copiado ✅");
-        } catch {
-          const ta = document.createElement("textarea");
-          ta.value = text;
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand("copy");
-          ta.remove();
-          showToast("Copiado ✅");
-        }
-      }
-
-      qtySelect.addEventListener("change", () => {
-        clearErr();
-        updatePreview();
-      });
-
-      copyBtn.addEventListener("click", async () => {
-        clearErr();
-        const qty = parseInt(qtySelect.value, 10) || 1;
-        await copyText(absoluteInviteLink(qty));
-      });
-
-      openBtn.addEventListener("click", () => {
-        clearErr();
-        const qty = parseInt(qtySelect.value, 10) || 1;
-        window.open(inviteLink(qty), "_blank", "noopener");
-      });
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        clearErr();
-
-        const qty = parseInt(qtySelect.value, 10) || 1;
-        const phone = normalizeEcuadorPhone(phoneInput.value);
-
-        if (!phone) {
-          showErr("Número inválido. Usa 09xxxxxxxx o +593xxxxxxxxx");
-          return;
-        }
-
-        const urlToSend = absoluteInviteLink(qty);
-        const msg = (CONFIG.WA_MESSAGE_PREFIX || "Invitación: ") + urlToSend;
-        const wa = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-
-        window.open(wa, "_blank", "noopener");
-      });
-
-      updatePreview();
-    })();
-  </script>
+  <script src="config.js"></script>
+  <script src="generator.js"></script>
 </body>
 </html>

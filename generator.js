@@ -12,7 +12,7 @@
 
   const toastEl = document.getElementById("copyToast");
   const toastText = document.getElementById("copyToastText");
-  const toast = window.bootstrap ? new bootstrap.Toast(toastEl, { delay: 1600 }) : null;
+  const toast = new bootstrap.Toast(toastEl, { delay: 1600 });
 
   function showErr(msg) {
     errBox.textContent = msg;
@@ -23,7 +23,6 @@
     errBox.classList.add("d-none");
   }
   function showToast(msg) {
-    if (!toast) return;
     toastText.textContent = msg;
     toast.show();
   }
@@ -35,10 +34,7 @@
 
     if (s.startsWith("+")) s = s.slice(1);
 
-    // 09xxxxxxxx
     if (/^09\d{8}$/.test(s)) return "593" + s.slice(1);
-
-    // 5939xxxxxxxx
     if (/^5939\d{8}$/.test(s)) return s;
 
     return null;
@@ -60,7 +56,6 @@
 
   function updatePreview() {
     const qty = parseInt(qtySelect.value, 10) || 1;
-    // MODIFICADO: cambia "persona" por "Reservado para"
     previewBadge.textContent = `Reservado para ${qty} persona${qty > 1 ? "s" : ""}`;
     previewFrame.src = inviteLink(qty);
   }
@@ -80,24 +75,24 @@
     }
   }
 
-  qtySelect.addEventListener("change", () => {
+  qtySelect.addEventListener("change", function() {
     clearErr();
     updatePreview();
   });
 
-  copyBtn.addEventListener("click", async () => {
+  copyBtn.addEventListener("click", async function() {
     clearErr();
     const qty = parseInt(qtySelect.value, 10) || 1;
     await copyText(absoluteInviteLink(qty));
   });
 
-  openBtn.addEventListener("click", () => {
+  openBtn.addEventListener("click", function() {
     clearErr();
     const qty = parseInt(qtySelect.value, 10) || 1;
     window.open(inviteLink(qty), "_blank", "noopener");
   });
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", function(e) {
     e.preventDefault();
     clearErr();
 
@@ -110,7 +105,7 @@
     }
 
     const urlToSend = absoluteInviteLink(qty);
-    const msg = (CONFIG.WA_MESSAGE_PREFIX || "Invitación: ") + urlToSend;
+    const msg = CONFIG.WA_MESSAGE_PREFIX + urlToSend;
     const wa = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 
     window.open(wa, "_blank", "noopener");
