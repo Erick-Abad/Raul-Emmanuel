@@ -31,7 +31,7 @@
   // ===== OBSEQUIO =====
   document.getElementById("giftNote").innerHTML = `"${CONFIG.GIFT_NOTE}"`;
 
-  // ===== RSVP - CONFIRMACIÓN AL ORGANIZADOR =====
+  // ===== RSVP =====
   const rsvpBtn = document.getElementById("rsvpBtn");
   const rsvpMessage = encodeURIComponent(CONFIG.RSVP_MESSAGE);
   rsvpBtn.href = `https://wa.me/${CONFIG.ORGANIZER_PHONE}?text=${rsvpMessage}`;
@@ -39,7 +39,7 @@
   const previewEl = document.getElementById("rsvpMessagePreview");
   if (previewEl) previewEl.textContent = `"${CONFIG.RSVP_MESSAGE}"`;
 
-  // ===== FECHA Y HORA EN TEXTOS =====
+  // ===== FECHA Y HORA =====
   const weekdays = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
   const months = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
@@ -48,7 +48,7 @@
 
   document.getElementById("eventTimeText").textContent = `${fmt2(eventDate.getHours())}:${fmt2(eventDate.getMinutes())}`;
 
-  // ===== COUNTDOWN CORREGIDO =====
+  // ===== COUNTDOWN =====
   const cdDays = document.getElementById("cdDays");
   const cdHours = document.getElementById("cdHours");
   const cdMinutes = document.getElementById("cdMinutes");
@@ -66,15 +66,9 @@
     cdDays.textContent = fmt2(days);
     cdHours.textContent = fmt2(hours);
     cdMinutes.textContent = fmt2(mins);
-    
-    // Forzar actualización visual
-    console.log("Countdown actualizado:", days, hours, mins);
   }
   
-  // Ejecutar inmediatamente
   tickCountdown();
-  
-  // Actualizar cada segundo
   setInterval(tickCountdown, 1000);
 
   // ===== PROGRESS BAR =====
@@ -90,7 +84,7 @@
   updateProgress();
   setInterval(updateProgress, 60000);
 
-  // ===== MODAL RELOJ CORREGIDO =====
+  // ===== MODAL RELOJ =====
   const timeBtn = document.getElementById("timeBtn");
   const modal = document.getElementById("clockModal");
   const digital = document.getElementById("digitalClock");
