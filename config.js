@@ -22,7 +22,7 @@ const CONFIG = {
   ORGANIZER_PHONE: "593982503754", // +593 98 250 3754 sin espacios ni símbolos
 
   // Mensaje de confirmación
-  RSVP_MESSAGE: "¡Qué emoción! Estaremos encantados de compartir este día tan especial con ustedes. Los esperamos con mucho cariño 💙",
+  RSVP_MESSAGE: "¡Qué emoción! Estaremos encantados de compartir este día tan especial con ustedes.💙",
 
   // Nota sobre el obsequio
   GIFT_NOTE: "Agradeceremos que cualquier detalle o muestra de cariño sea entregado en sobre cerrado al momento de su llegada.",
