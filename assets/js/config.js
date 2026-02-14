@@ -28,5 +28,5 @@ const CONFIG = {
   GIFT_NOTE: "Agradeceremos que cualquier detalle o muestra de cariño sea entregado en sobre cerrado al momento de su llegada.",
 
   // Mensaje para WhatsApp cuando envías la invitación (generador)
-  WA_MESSAGE_PREFIX: "Hola 😊 Con muchísima alegría queremos compartir contigo la invitación al Baby Shower de nuestro querido Raúl Emmanuel 🤍 Estamos preparando un día muy especial para celebrar la dulce espera y nos encantaría que formes parte de este momento tan importante para nosotros. Tu presencia hará que esta celebración sea aún más significativa y llena de amor.En la invitación encontrarás todos los detalles del evento. ¡Esperamos contar contigo para compartir juntos esta hermosa bendición! "
-};
+  WA_MESSAGE_PREFIX:  "Hola 😊\n\nCon muchísima alegría queremos compartir contigo la invitación al Baby Shower de nuestro querido Raúl Emmanuel 🤍\n\nEstamos preparando un día muy especial para celebrar la dulce espera y nos encantaría que formes parte de este momento tan importante para nosotros. Tu presencia hará que esta celebración sea aún más significativa y llena de amor.\n\nEn la invitación encontrarás todos los detalles del evento. ¡Esperamos contar contigo para compartir juntos esta hermosa bendición!\n\n"
+};;
