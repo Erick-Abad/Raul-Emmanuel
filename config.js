@@ -19,7 +19,7 @@ const CONFIG = {
   MAPS_OPEN_URL: "https://maps.google.com/?q=Mueblerías+Barmac,+Av.+Las+Aguas&cid=15524904944954228717",
 
   // Número del organizador
-  ORGANIZER_PHONE: "593991108137",
+  ORGANIZER_PHONE: "5982503754",
 
   // Mensaje de confirmación
   RSVP_MESSAGE: "¡Qué emoción! Estaremos encantados de compartir este día tan especial con ustedes. Los esperamos con mucho cariño 💙",
