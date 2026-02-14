@@ -35,7 +35,10 @@
 
     if (s.startsWith("+")) s = s.slice(1);
 
+    // 09xxxxxxxx
     if (/^09\d{8}$/.test(s)) return "593" + s.slice(1);
+
+    // 5939xxxxxxxx
     if (/^5939\d{8}$/.test(s)) return s;
 
     return null;
@@ -57,6 +60,7 @@
 
   function updatePreview() {
     const qty = parseInt(qtySelect.value, 10) || 1;
+    // MODIFICADO: cambia "persona" por "Reservado para"
     previewBadge.textContent = `Reservado para ${qty} persona${qty > 1 ? "s" : ""}`;
     previewFrame.src = inviteLink(qty);
   }
@@ -106,7 +110,7 @@
     }
 
     const urlToSend = absoluteInviteLink(qty);
-    const msg = CONFIG.WA_MESSAGE_PREFIX + urlToSend;
+    const msg = (CONFIG.WA_MESSAGE_PREFIX || "Invitación: ") + urlToSend;
     const wa = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 
     window.open(wa, "_blank", "noopener");
