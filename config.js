@@ -16,7 +16,8 @@ const CONFIG = {
   MAP_EMBED_URL: "https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d15947.964981511734!2d-79.915386!3d-2.157026!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMsKwMDknMjUuMyJTIDc5wrA1NCc0Ni4xIlc!5e0!3m2!1ses!2sec!4v1771080722602!5m2!1ses!2sec",
 
   // Link para abrir en Google Maps
-  MAPS_OPEN_URL: "https://maps.google.com/?q=-2.157026,-79.914161",
+  MAPS_OPEN_URL: "https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d15947.964981511734!2d-79.915386!3d-2.157026!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMsKwMDknMjUuMyJTIDc5wrA1NCc0Ni4xIlc!5e0!3m2!1ses!2sec!4v1771080722602!5m2!1ses!2sec",
+
 
   // Número del organizador
   ORGANIZER_PHONE: "593991108137",
